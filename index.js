@@ -14,6 +14,9 @@ window.onload = function(){
 	// get saved printers
 	reloadPrinters();
 	// update printer info
+	for(var i=0;i<numPrinters;i++){
+		initialInfo(printers.ip[i],printers.apikey[i], i);
+	}
 	setInterval(function () {updatePrinters();}, refreshRate);
 };
 
@@ -180,6 +183,9 @@ function addFromModalString(){
 
 	var newIP = $("#printerViewString").val().split("|")[0].substr(3);
 	var newPort = $("#printerViewString").val().split("|")[2].substr(5);
+	if (newPort == "undefined"){
+		newPort = 80;
+	}
 	var newApikey = $("#printerViewString").val().split("|")[3].substr(4);
 	// var newIP = $("#newIP").val();
 	// var newPort = $("#newPort").val();
